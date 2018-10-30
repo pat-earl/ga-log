@@ -1,0 +1,114 @@
+[
+	{
+		"id": "0",
+		"name": "other",
+		"profs": [
+			"Zhang",
+			"Schwesinger",
+			"Parson",
+			"Spiegel",
+			"Frye",
+			"Hussain",
+			"Pham",
+			"Carelli",
+			"Demarco",
+            "Shim",
+            "Tan"
+		]
+	},
+    {
+        "id": "135",
+        "name": "Computer Science I",
+        "profs": [
+            "Carelli",
+            "Tranotti",
+            "Demarco"
+        ]
+    },
+    {
+        "id": "136",
+        "name": "Computer Science II",
+        "profs": [
+            "Carelli",
+            "Frye"
+        ]
+    },
+    {
+        "id": "220",
+        "name": "Object-Oriented Multimedia Programming",
+        "profs": [
+            "Parson"
+        ]
+    },
+    {
+        "id": "223",
+        "name": "Advanced Scientific Programming",
+        "profs": [
+            "Schwesinger"
+        ]
+    },
+    {
+        "id": "235",
+        "name": "Computer Organization/Assembly",
+        "profs": [
+            "Carelli"
+        ]
+    },
+	{
+		"id": "237",
+		"name": "Data Structures",
+		"profs": [
+			"Zhang",
+			"Schwesinger"
+		]
+	},
+	{
+		"id": "242",
+		"name": "Web Programming",
+		"profs": [
+			"Schwesinger"
+		]
+	},
+    {
+        "id": "243",
+        "name": "Java Programming",
+        "profs": [
+            "Demarco"
+        ]
+    },
+    {
+        "id": "253",
+        "name": "IT Systems",
+        "profs": [
+            "Shim"
+        ]
+    },
+    {
+        "id": "311",
+        "name": "Computer Networks",
+        "profs": [
+            "Shim"
+        ]
+    },
+    {
+        "id": "328",
+        "name": "Network Programming",
+        "profs": [
+            "Frye"
+        ]
+    },
+    {
+        "id": "343",
+        "name": "Operating Systems",
+        "profs": [
+            "Hussain"
+        ]
+    },
+    {
+        "id": "456",
+        "name": "Database Management Systems",
+        "profs": [
+            "Shim"
+        ]
+    }
+]
