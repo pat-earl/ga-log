@@ -1,16 +1,26 @@
 <?php
+/**
+ * Generates the table of currently-logged-in students.
+ * 
+ * Author: Tyler Stoney
+ * Created: 29 Oct 2018
+ */
+
 if(!session_id()) session_start();
 
 date_default_timezone_set('America/New_York');
 
 if(!isset($_SESSION['stud_in_office_table'])) {
+	// My JQuery looks for "table" in the response to draw the table
+	//   otherwise, it will create a toast with whatever the response
+	//   is, for example, this:
 	echo("couldn't update table. Maybe try refreshing the page?");
 	exit;
-} else{
+} else {
 
 	$amt = count($_SESSION['stud_in_office_table']);
 
-	if($amt>0){
+	if($amt>0){ 
 		echo("<table class='highlight' id='signin_table'>
 				<tr>
 					<th>Student</th>

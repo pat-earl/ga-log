@@ -1,3 +1,11 @@
+/**
+ * Handles the Materialize style, dynamic generation of elements,
+ * and running php scripts via AJAX.
+ * 
+ * Author: Tyler Stoney
+ * Created: 28 Oct 2018
+ */
+
 var classes;
 var ga_sel = document.getElementById('ga_select');
 var class_sel = document.getElementById('class_dropdown');
@@ -8,13 +16,14 @@ function showDiv(btnName, divName) {
 	var addDiv = document.getElementById(divName);
 	showButt.setAttribute('hidden', 'true');
 	showButt.setAttribute("style", "display:none;");
-	addDiv.removeAttribute('style');
+    addDiv.removeAttribute('style');
+	addDiv.removeAttribute('disabled');
 }
 
-function enableProf() {
-	var profDiv = document.getElementById('prof_dropdown');
-	profDiv.removeAttribute('disabled');
-	profEnabled = true;
+// Helper, enables an element via ID
+function enableElt(eltID) {
+	var elt = document.getElementById(eltID);
+	elt.removeAttribute('disabled');
 }
 
 function populateProf() {
@@ -23,26 +32,40 @@ function populateProf() {
 	var selDiv = document.getElementById("prof_dropdown");
 	var classID = e.options[e.selectedIndex].value;
 
-	if(!profEnabled)
-		enableProf();
+	if(!profEnabled){
+		enableElt('prof_dropdown');
+        profEnabled = true;
+    }
 
+    // If the user selected "(other)" as the class,
+    //   show the field for manual entry of class
 	if(classID=="0") {
 		showDiv('none', 'other_class');
-	} else {
-		document.getElementById('other_class').setAttribute("style", "display:none;");
-	}
+	} else { // Otherwise, hide and disable it.
+        var oth_class = document.getElementById('other_class');
+		oth_class.setAttribute("style", "display:none;");
+        oth_class.setAttribute("disabled", "true;");
+    }
 
+    // Deletes all child nodes of the professor select 
+    //   dropdown (removes all professor options)
 	while (selDiv.firstChild) {
     	selDiv.removeChild(selDiv.firstChild);
 	}
 
+    // Get the list of professors associated  
+    //   with the selected class's ID.
+    // I use a for rather than forEach so I 
+    //   can break out of it. Thanks, JS >:(
 	var profList;
-	classes.forEach(cs => {
-		if(cs.id === classID) {
-			profList = cs.profs;
-		}
-	});
+    for(var i = 0; i < classes.length; i++) {
+        if(classes[i].id === classID) {
+            profList = classes[i].profs;
+            break;
+        }
+    }
 
+    // Create option elements with each professor in list
 	profList.forEach(prof => {
 		var sel = document.createElement("option");
 		sel.setAttribute('value', prof);
@@ -50,6 +73,7 @@ function populateProf() {
 		selDiv.appendChild(sel);
 	});
 
+    // Reinitialize the Materialize options to update the buttons
 	$('select').formSelect();
 }
 
@@ -85,15 +109,15 @@ function loadGaSchedules() {
 			sel.setAttribute('value', (ga.first_name + " " + ga.last_name));
 			sel.innerHTML = (ga.first_name + " " +  ga.last_name);
 			if(ga['schedule'][curr_day]['in'] != 'NO'){
+
+                var in_time = ga['schedule'][curr_day]['in'].split(':');
+                var out_time = ga['schedule'][curr_day]['out'].split(':');
+
 				var ga_in = new Date();
+                ga_in.setHours(in_time[0]);
+                ga_in.setMinutes(in_time[1]);
+
 				var ga_out = new Date();
-				
-				var in_time = ga['schedule'][curr_day]['in'].split(':');
-				var out_time = ga['schedule'][curr_day]['out'].split(':');
-
-				ga_in.setHours(in_time[0]);
-				ga_in.setMinutes(in_time[1]);
-
 				ga_out.setHours(out_time[0]);
 				ga_out.setMinutes(out_time[1]);
 
@@ -107,6 +131,9 @@ function loadGaSchedules() {
 
 }
 
+// Loads the table of currently-signed-in students.
+//  Function is run on page load/reload, and on successfully
+//  logging a student as present.
 function reloadTable() {
 	var ajaxurl = './actions/table.php',
 	data = '';
@@ -124,6 +151,9 @@ function reloadTable() {
 	});
 }
 
+// Dynamically-created Materialize buttons must be manually initialized,
+//  so this function takes care of that.  The only buttons thus far in the
+//  app that need this are the signout buttons put in the table.
 function initButtons() {
 	$('.signout').click(function(){
         var clickBtnValue = $(this).val();
@@ -144,22 +174,19 @@ function initButtons() {
 	});
 }
 
-//function clockInit() {
-	document.addEventListener('DOMContentLoaded', function() {
-		var elems = document.querySelectorAll('.timepicker');
-		var instances = M.Timepicker.init(elems, {twelveHour: false});
-	});
-//}
+// Creates the clock app with a 24h time picker.
+// * NOTE: The clock didn't want to be created manually 
+//   if this was in a  function, so here it is. *
+document.addEventListener('DOMContentLoaded', function() {
+	var elems = document.querySelectorAll('.timepicker');
+	var instances = M.Timepicker.init(elems, {twelveHour: false});
+});
 
 $(document).ready(function() {
 	loadGaSchedules();
 	reloadTable();
 
 	M.AutoInit();
-
-	//clockInit();
-	
-	
 
 	loadJSON('./data/classlist.json', function(response) {
 		// Parse JSON string into object
