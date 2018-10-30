@@ -7,33 +7,50 @@ $date = date('Y-m-d');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$db = new PDO('sqlite:./GA_LOG.db');
+/* 
+ * Some initialization stuff for use in populating
+ * dropdowns, form checking, etc.
+ */
+
+/* GET FULL LIST OF STUDENTS */
+
+// Connect to db, select every student
+$db = new PDO('sqlite:./data/GA_LOG.db');
 $student_query = $db->prepare("SELECT rowid, fname, lname FROM 'students'");
 $student_query->execute();
 
-$student_list = [];
-$student_ids = [];
+$student_list = []; // Used in populating student select dropdown as human-readable info
+$student_ids  = []; // Used in populating student select dropdown as value sent to query
 while($row = $student_query->fetchObject()) {
-	$fullname = $row->fname . " " . $row->lname;
 	$student_ids[] = $row->rowid;
+
+	$fullname = $row->fname . " " . $row->lname;
 	$student_list[] = $fullname;
 }
 
+// Store both in the session (both used in "create_student.php")
 $_SESSION['stud_ids'] = $student_ids;
 $_SESSION['stud_list'] = $student_list;
 
-$students_in_office_table = [];
-$students_in_office = [];
+
+/* GET LIST OF STUDENTS CURRENTLY SIGNED IN */
+
+$students_in_office_table = []; // Holds all query objects (all data about signed-in students)
+$students_in_office 	  = []; // Holds just the id of the students currently signed in
 if($student_query = $db->prepare("SELECT * FROM signed_in LEFT JOIN students on signed_in.student_id = students.rowid WHERE sign_in_time >= sign_out_time")) {
 	$student_query->execute();
+
 	while($row = $student_query->fetchObject()) {
 		$students_in_office_table[] = $row;
-		$students_in_office[] = $row->student_id;
+		$students_in_office[] 		= $row->student_id;
 	}
-}else{
+
+} else {
    //error !! don't go further
    var_dump($db->errorInfo());
 }
+
+// Store both in the session (both used in "log_student.php", "signout.php", "table.php")
 $_SESSION['stud_in_office_table'] = $students_in_office_table;
 $_SESSION['stud_in_office'] = $students_in_office;
 ?>
@@ -48,7 +65,7 @@ $_SESSION['stud_in_office'] = $students_in_office;
 		color:#333;
 		opacity:1;
 	}
-</style>
+	</style>
 </head>
 
 <!-- <body onload="init();"> -->
@@ -153,7 +170,7 @@ $_SESSION['stud_in_office'] = $students_in_office;
 	  	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	  	crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script src="./scripts.js"></script>
+<script src="./scripts/scripts.js"></script>
 
 </body>
 

@@ -1,26 +1,34 @@
 [
-	{
-		"id": "0",
-		"name": "other",
-		"profs": [
-			"Zhang",
-			"Schwesinger",
-			"Parson",
-			"Spiegel",
-			"Frye",
-			"Hussain",
-			"Pham",
-			"Carelli",
-			"Demarco",
-            "Shim",
-            "Tan"
-		]
-	},
+    {
+	"id": "0",
+	"name": "other",
+	"profs": [
+	     "Zhang",
+	     "Schwesinger",
+	     "Parson",
+	     "Spiegel",
+	     "Frye",
+	     "Hussain",
+	     "Pham",
+	     "Carelli",
+	     "Demarco",
+             "Shim",
+             "Tan"
+	]
+    },
+    {
+        "id": "125",
+        "name": "Discrete Math I",
+        "profs": [
+            "Zhang"
+        ]
+    },
     {
         "id": "135",
         "name": "Computer Science I",
         "profs": [
             "Carelli",
+	    "Manakkadu",
             "Tranotti",
             "Demarco"
         ]
@@ -29,8 +37,7 @@
         "id": "136",
         "name": "Computer Science II",
         "profs": [
-            "Carelli",
-            "Frye"
+	    "Spiegel"
         ]
     },
     {
@@ -45,6 +52,13 @@
         "name": "Advanced Scientific Programming",
         "profs": [
             "Schwesinger"
+        ]
+    },
+    {
+        "id": "225",
+        "name": "Discrete Math II",
+        "profs": [
+            "Zhang"
         ]
     },
     {
@@ -80,6 +94,7 @@
         "id": "253",
         "name": "IT Systems",
         "profs": [
+	    "Pham",
             "Shim"
         ]
     },
@@ -97,6 +112,13 @@
             "Frye"
         ]
     },
+    {
+	"id": "341",
+	"name": "Intro to Information Security",
+	"profs": [
+	    "Pham"
+	]
+    },  
     {
         "id": "343",
         "name": "Operating Systems",
