@@ -104,29 +104,31 @@ function loadGaSchedules() {
 		// Parse JSON string into object
 		var ga_sched = JSON.parse(response);
 		ga_sel = document.getElementById('ga_select');
-		ga_sched.forEach(ga => {
-			var sel = document.createElement("option");
-			sel.setAttribute('value', (ga.first_name + " " + ga.last_name));
-			sel.innerHTML = (ga.first_name + " " +  ga.last_name);
-			if(ga['schedule'][curr_day]['in'] != 'NO'){
+		if(ga_sel !== null) {
+			ga_sched.forEach(ga => {
+				var sel = document.createElement("option");
+				sel.setAttribute('value', (ga.first_name + " " + ga.last_name));
+				sel.innerHTML = (ga.first_name + " " +  ga.last_name);
+				if(ga['schedule'][curr_day]['in'] != 'NO'){
 
-                var in_time = ga['schedule'][curr_day]['in'].split(':');
-                var out_time = ga['schedule'][curr_day]['out'].split(':');
+					var in_time = ga['schedule'][curr_day]['in'].split(':');
+					var out_time = ga['schedule'][curr_day]['out'].split(':');
 
-				var ga_in = new Date();
-                ga_in.setHours(in_time[0]);
-                ga_in.setMinutes(in_time[1]);
+					var ga_in = new Date();
+					ga_in.setHours(in_time[0]);
+					ga_in.setMinutes(in_time[1]);
 
-				var ga_out = new Date();
-				ga_out.setHours(out_time[0]);
-				ga_out.setMinutes(out_time[1]);
+					var ga_out = new Date();
+					ga_out.setHours(out_time[0]);
+					ga_out.setMinutes(out_time[1]);
 
-				if(today_now >= ga_in && today_now <= ga_out){
-					sel.setAttribute('selected', 'true');
+					if(today_now >= ga_in && today_now <= ga_out){
+						sel.setAttribute('selected', 'true');
+					}
 				}
-			}
-			ga_sel.appendChild(sel);
-		});
+				ga_sel.appendChild(sel);
+			});
+		}
 	});
 
 }

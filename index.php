@@ -23,10 +23,10 @@ ini_set('display_errors', 1);
 </head>
 
 <?php 
-if(isset($_SESSION['stud_in_office_table']) and 
+/* if(isset($_SESSION['stud_in_office_table']) and 
 isset($_SESSION['stud_in_office'])	and
 isset($_SESSION['stud_ids'])			and
-isset($_SESSION['stud_list'])) {
+isset($_SESSION['stud_list'])) { */
 ?>
 <!-- <body onload="init();"> -->
 <body>
@@ -124,9 +124,13 @@ isset($_SESSION['stud_list'])) {
 			<button class="addstud waves-effect waves-light btn" type='button'>Submit</button>
 		</form>
 	</div>
+	<br>
+	<div class='section'>
+		<a href='./comments.php'><h6>Have a suggestion?</h6></a>
+	</div>
 </div>
 
-<?php } ?>
+<?php //} ?>
 
 <script	src="https://code.jquery.com/jquery-3.3.1.min.js"
 	  	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
