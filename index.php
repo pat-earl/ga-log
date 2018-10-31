@@ -23,7 +23,10 @@ ini_set('display_errors', 1);
 </head>
 
 <?php 
-if(isset($_SESSION)) {
+if(isset($_SESSION['stud_in_office_table']) and 
+isset($_SESSION['stud_in_office'])	and
+isset($_SESSION['stud_ids'])			and
+isset($_SESSION['stud_list'])) {
 ?>
 <!-- <body onload="init();"> -->
 <body>
