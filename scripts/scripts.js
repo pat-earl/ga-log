@@ -136,7 +136,7 @@ function loadGaSchedules() {
 //  logging a student as present.
 function reloadTable() {
 	var ajaxurl = './actions/table.php',
-	data = '';
+	data = "&ajax=" + true;
 	$.post(ajaxurl, data, function (response) {
 		if(response.indexOf("table")>=0){
 			$('#tableDiv').html(response);
@@ -151,6 +151,18 @@ function reloadTable() {
 	});
 }
 
+function getRecords() {
+	var ajaxurl = './actions/records.php',
+	data = "&ajax=" + true;
+	$.post(ajaxurl, data, function (response) {
+		if(response.indexOf("success")>=0){
+			reloadTable();
+		} else {
+			M.toast({html: "Error: Session couldn't be set. Try refreshing the page."});
+		}
+	});
+}
+
 // Dynamically-created Materialize buttons must be manually initialized,
 //  so this function takes care of that.  The only buttons thus far in the
 //  app that need this are the signout buttons put in the table.
@@ -159,7 +171,7 @@ function initButtons() {
         var clickBtnValue = $(this).val();
         var rowId = '#row'+clickBtnValue;
         var ajaxurl = './actions/signout.php',
-        data =  {'studId': clickBtnValue};
+        data =  {'studId': clickBtnValue, 'ajax': true};
         $.post(ajaxurl, data, function (response) {
             if(response.indexOf("success")>=0){
             	M.toast({html: 'Student successfully signed out!'});
@@ -184,7 +196,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 $(document).ready(function() {
 	loadGaSchedules();
-	reloadTable();
+	getRecords();
+	//reloadTable();
 
 	M.AutoInit();
 
@@ -211,7 +224,7 @@ $(document).ready(function() {
 	$('.addstud').click(function(){
         var clickBtnValue = $(this).val();
         var ajaxurl = './actions/create_student.php',
-        data =  $('form').serialize();
+        data =  $('form').serialize() + "&ajax=" + true;
         $.post(ajaxurl, data, function (response) {
             if(response.indexOf("success")>=0){
             	M.toast({displayLength: 1000, html: 'Student successfully added!', completeCallback: function(){location.reload();}});
@@ -225,11 +238,12 @@ $(document).ready(function() {
 	$('.signinstud').click(function(){
         var clickBtnValue = $(this).val();
         var ajaxurl = './actions/log_student.php',
-        data =  $('form').serialize();
+        data =  $('form').serialize() + "&ajax=" + true;
         $.post(ajaxurl, data, function (response) {
             if(response.indexOf("success")>=0){
 				M.toast({displayLength: 1000, html: 'Student successfully logged!'/*, completeCallback: function(){location.reload(); }*/});
-				reloadTable();
+				getRecords();
+				//reloadTable();
 			} else {
         		M.toast({html: ("Error: " + response)});
         	}

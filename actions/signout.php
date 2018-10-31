@@ -1,6 +1,9 @@
 <?php
 if(!session_id()) session_start();
 
+if(!isset($_POST['ajax']))
+	header("Location: ../index.php");
+
 date_default_timezone_set('America/New_York');
 $time = date('H:i');
 $date = date('Y-m-d');

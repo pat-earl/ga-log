@@ -8,6 +8,11 @@
 
 if(!session_id()) session_start();
 
+if(!isset($_POST['ajax'])){
+	header("Location: ../index.php");
+	exit;
+}
+
 date_default_timezone_set('America/New_York');
 
 if(!isset($_SESSION['stud_in_office_table'])) {

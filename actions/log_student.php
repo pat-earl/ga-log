@@ -8,6 +8,11 @@
  */
 if(!session_id()) session_start();
 
+if(!isset($_POST['ajax'])) {
+	header("Location: ../index.php");
+	exit;
+}
+
 $students_in_office_table = [];
 $students_in_office = [];
 if(isset($_SESSION['stud_in_office']) && isset($_SESSION['stud_in_office_table'])) {
@@ -77,8 +82,10 @@ if(in_array($id, $students_in_office)) {
 		$insert_stmt->bindParam(":reason", $reason);
 		$insert_stmt->bindParam(":assistants", $GAs);
 		$insert_stmt->bindParam(":in_time", $dt);
-		$insert_stmt->bindParam(":out_time", $dt);
-		$insert_stmt->execute();
+		$insert_stmt->bindParam(":out_time", $dt); // Set the out time equal to in-time
+		$insert_stmt->execute();				   //  Looking up current students is based
+												   //  on a sql query (if time in == time out,
+												   //  the person is currently in-office)
 		
 	
 		$students_in_office_table = [];
