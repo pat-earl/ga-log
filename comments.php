@@ -13,13 +13,13 @@
 	<div class='section'>
 		<form method="POST">
 			<div class="input-field col s12">
-			<textarea type="textarea" maxlength="128" id='comment-data' class="materialize-textarea" name='comment' placeholder="Boy howdy is this log neato" required data-length="128"></textarea>
-			<label for='comment-data'>Comment</label>
+				<textarea type="textarea" maxlength="128" id='comment-data' class="materialize-textarea" name='comment' placeholder="Boy howdy is this log neato" required data-length="128"></textarea>
+				<label for='comment-data'>Comment</label>
 			</div>
 
 			<div class="input-field col s12">
-			<label>Title</label>
-			<input type="text" maxlength="64" id='short-data' name='submitter' placeholder="Your name, a title, I don't care. Just keep it brief." required data-length="64"></input>
+				<label>Title</label>
+				<input type="text" maxlength="64" id='short-data' name='submitter' placeholder="Your name, a title, I don't care. Just keep it brief." required data-length="64"></input>
 			</div>
 
 			<button id='submit-comment' class="waves-effect waves-light btn" type="button">Submit

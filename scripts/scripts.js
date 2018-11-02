@@ -10,6 +10,7 @@ var classes;
 var ga_sel = document.getElementById('ga_select');
 var class_sel = document.getElementById('class_dropdown');
 var profEnabled = false;
+var timePickers = null;
 
 function showDiv(btnName, divName) {
 	var showButt = document.getElementById(btnName);
@@ -94,7 +95,11 @@ function loadJSON(filename, callback) {
     xobj.send(null);  
  }
 
- /* Loads GA schedules */
+ /* Loads GA schedules from
+  * a JSON file, selects the 
+  * GA(s) currently occupying 
+  * the office.
+  */
 function loadGaSchedules() {
 	var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 	var today_date = new Date();
@@ -132,6 +137,39 @@ function loadGaSchedules() {
 	});
 
 }
+
+// Reloads the student records, effectively
+//   refreshing the students in the session
+function reloadRecords() {
+	var ajaxurl = './actions/records.php',
+	data = "&ajax=" + true;
+	$.post(ajaxurl, data, function (response) {
+		if(response.indexOf("success")>=0){
+			reloadDropdowns();
+		}
+		else
+			M.toast({html: "Error: Couldn't reload the dropdowns."});
+
+	});
+}
+
+// load_student_list.php returns html option
+//   tags containing the students in the session.
+//   The form's select element is then refreshed.
+function reloadDropdowns() {
+	var ajaxurl = './actions/load_student_list.php',
+	data = "&ajax=" + true;
+	$.post(ajaxurl, data, function (response) {
+		if(response.indexOf("option")>=0){
+			$('#student_dropdown').append(response);
+			$('select').formSelect();
+		}
+		else
+			M.toast({html: "Error: Couldn't populate the dropdowns."});
+
+	});
+}
+
 
 // Loads the table of currently-signed-in students.
 //  Function is run on page load/reload, and on successfully
@@ -193,7 +231,7 @@ function initButtons() {
 //   if this was in a  function, so here it is. *
 document.addEventListener('DOMContentLoaded', function() {
 	var elems = document.querySelectorAll('.timepicker');
-	var instances = M.Timepicker.init(elems, {twelveHour: false});
+	timePickers = M.Timepicker.init(elems, {twelveHour: false});
 });
 
 $(document).ready(function() {
@@ -203,6 +241,7 @@ $(document).ready(function() {
 
 	M.AutoInit();
 
+	// Populates the class select dropdown from a JSON file
 	loadJSON('./data/classlist.json', function(response) {
 		// Parse JSON string into object
 		classes = JSON.parse(response);
@@ -229,7 +268,7 @@ $(document).ready(function() {
         data =  $('form').serialize() + "&ajax=" + true;
         $.post(ajaxurl, data, function (response) {
             if(response.indexOf("success")>=0){
-            	M.toast({displayLength: 1000, html: 'Student successfully added!', completeCallback: function(){location.reload();}});
+            	M.toast({displayLength: 1000, html: 'Student successfully added!', completeCallback: function(){reloadRecords();}});
         	} else {
         		M.toast({html: ("Error: " + response)});
         	}
@@ -250,7 +289,20 @@ $(document).ready(function() {
         		M.toast({html: ("Error: " + response)});
         	}
         });
-    });
+	});
+
+	// The "Current Time" button
+	$('.timeNow').click(function(){
+		var dateStr = new Date().toLocaleTimeString('en-US', { hour12: false, 
+															   hour: "numeric", 
+															   minute: "numeric"});
+		
+		console.log(dateStr);
+		$("input[name='time_log']").attr('value', dateStr);
+		$("input[name='time_log']").prop('value', dateStr);
+	});
+	
+	reloadDropdowns();
 
 });
 

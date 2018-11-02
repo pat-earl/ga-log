@@ -1,13 +1,4 @@
-<?php
-if(!session_id()) session_start();
-
-date_default_timezone_set('America/New_York');
-$time = date('H:i');
-$date = date('Y-m-d');
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-?>
+<?php require './pages/header.php' ?>
 
 <html>
 <head>
@@ -22,13 +13,6 @@ ini_set('display_errors', 1);
 	</style>
 </head>
 
-<?php 
-/* if(isset($_SESSION['stud_in_office_table']) and 
-isset($_SESSION['stud_in_office'])	and
-isset($_SESSION['stud_ids'])			and
-isset($_SESSION['stud_list'])) { */
-?>
-<!-- <body onload="init();"> -->
 <body>
 
 <div class="container center-align">
@@ -57,13 +41,6 @@ isset($_SESSION['stud_list'])) { */
 			<!-- Student:  -->
 			<div class="input-field col s12">
 			<select id='student_dropdown' name='student_dropdown' required>
-				<option value='' selected disabled>(SELECT STUDENT)</option>
-				<?php 
-				if(isset($_SESSION['stud_ids']))
-					for($i = 0; $i < count($_SESSION['stud_ids']); $i++) {
-					    echo("<option value='".$_SESSION['stud_ids'][$i]."'>".$_SESSION['stud_list'][$i]."</option>");
-					}
-				?>
 			</select>
 			<label>Student</label>
 			</div><br>
@@ -104,9 +81,10 @@ isset($_SESSION['stud_list'])) { */
 			<input type="text" class="datepicker" name="today" value=<?php echo "$date"; ?>>
 			
 			<label>Time In</label>
-			<input type="text" class="timepicker no-autoinit" name='time_log' value=<?php echo "$time"; ?> min="8:00" max="18:00">
-
-			<br>
+			<input type="text" id='time_log' class="timepicker no-autoinit" name='time_log' value=<?php echo "$time"; ?> min="8:00" max="18:00">
+			<button class="timeNow waves-effect waves-teal btn-flat" type="button">(Current Time)
+			</button>
+			<br><br>
 
 			<button class="signinstud waves-effect waves-light btn" type="button">Submit
 				<!-- <i class="material-icons right">send</i> -->
@@ -125,17 +103,9 @@ isset($_SESSION['stud_list'])) { */
 		</form>
 	</div>
 	<br>
-	<div class='section'>
-		<a href='./comments.php'><h6>Have a suggestion?</h6></a>
-	</div>
+	<?php require './pages/footer.php' ?>
 </div>
 
-<?php //} ?>
-
-<script	src="https://code.jquery.com/jquery-3.3.1.min.js"
-	  	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-	  	crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="./scripts/scripts.js"></script>
 
 </body>
