@@ -21,6 +21,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script>
 $( "#theme" ).change(function() {
-  alert( "Handler for .change() called." );
+  alert( "This hasn't been implemented yet. I appreciate the enthusiasm tho :-)" );
 });
 </script>
