@@ -5,12 +5,6 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     
 	<title>GA Support Log</title>
-	<style>
-	::placeholder { 
-		color:#333;
-		opacity:1;
-	}
-	</style>
 </head>
 
 <body>
@@ -40,9 +34,12 @@
 
 			<!-- Student:  -->
 			<div class="input-field col s12">
-			<select id='student_dropdown' name='student_dropdown' required>
+			<input type="text" id="student-auto" class="autocomplete" onchange='changeSelectDom();'>
+  			<label for="student-auto">Student</label>
+			</div>
+			<div class="input-field col s12" style='display:none;'>
+			<select id='student_dropdown' name='student_dropdown' style='display:none;'>
 			</select>
-			<label>Student</label>
 			</div><br>
 
 			<!-- Class: -->

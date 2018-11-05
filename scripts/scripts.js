@@ -162,12 +162,30 @@ function reloadDropdowns() {
 	$.post(ajaxurl, data, function (response) {
 		if(response.indexOf("option")>=0){
 			$('#student_dropdown').append(response);
-			$('select').formSelect();
+			//$('select').formSelect();
+			//$('#test option').filter(function () { return $(this).html() == "B"; }).val();
+			var studList={};
+			$("#student_dropdown > option").each(function() {
+				//alert(this.text + ' ' + this.value);
+				studList[this.text] = null;
+			});
+			$('input.autocomplete').autocomplete({
+				data: studList,
+			});
 		}
 		else
 			M.toast({html: "Error: Couldn't populate the dropdowns."});
 
 	});
+}
+
+function changeSelectDom() {
+	$("#student_dropdown option").filter(function() {
+		if( this.text == $("#student-auto").val()){
+			console.log(this.value + this.text);
+			return this.text == $("#student-auto").val();
+		}
+	}).attr('selected', true);
 }
 
 

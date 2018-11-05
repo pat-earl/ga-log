@@ -1,0 +1,7 @@
+.darktheme::-webkit-input-placeholder {
+    color: #bdbdbd
+}
+
+.darktheme::placeholder {
+    color: #bdbdbd
+}
