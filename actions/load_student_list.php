@@ -12,7 +12,7 @@ if(!isset($_POST['ajax'])){
 	exit;
 }
 
-echo("<option value='' selected disabled>(SELECT STUDENT)</option>");
+echo("<option value='0' selected disabled>(SELECT STUDENT)</option>");
 if(isset($_SESSION['stud_ids']))
     for($i = 0; $i < count($_SESSION['stud_ids']); $i++) {
         echo("<option value='".$_SESSION['stud_ids'][$i]."'>".$_SESSION['stud_list'][$i]."</option>");

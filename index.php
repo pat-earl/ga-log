@@ -34,7 +34,7 @@
 
 			<!-- Student:  -->
 			<div class="input-field col s12">
-			<input type="text" id="student-auto" class="autocomplete" onchange='changeSelectDom();'>
+			<input type="text" id="student-auto" class="autocomplete" onchange='changeSelectDom();' onblur='changeSelectDom();'>
   			<label for="student-auto">Student</label>
 			</div>
 			<div class="input-field col s12" style='display:none;'>
