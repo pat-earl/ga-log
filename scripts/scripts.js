@@ -11,6 +11,7 @@ var ga_sel = document.getElementById('ga_select');
 var class_sel = document.getElementById('class_dropdown');
 var profEnabled = false;
 var timePickers = null;
+var studentListLen = 0;
 
 function showDiv(btnName, divName) {
 	var showButt = document.getElementById(btnName);
@@ -165,9 +166,11 @@ function reloadDropdowns() {
 			//$('select').formSelect();
 			//$('#test option').filter(function () { return $(this).html() == "B"; }).val();
 			var studList={};
+            studListLen = 1;
 			$("#student_dropdown > option").each(function() {
 				//alert(this.text + ' ' + this.value);
 				studList[this.text] = null;
+                studListLen++;
 			});
 			$('input.autocomplete').autocomplete({
 				data: studList,
@@ -180,12 +183,19 @@ function reloadDropdowns() {
 }
 
 function changeSelectDom() {
+    var cmpLen = 1;
 	$("#student_dropdown option").filter(function() {
-		if( this.text == $("#student-auto").val()){
-			console.log(this.value + this.text);
+        cmpLen++;
+		if( this.text == $("#student-auto").val()) {
+			//console.log(this.value + this.text);
+            cmpLen=-13;
 			return this.text == $("#student-auto").val();
-		}
-	}).attr('selected', true);
+		} 
+	}).attr('selected', true).change();
+    if(cmpLen > studentListLen) {
+        //console.log(cmpLen + "not found" + studListLen);
+        $("#student_dropdown").val('0').change();
+    }
 }
 
 
