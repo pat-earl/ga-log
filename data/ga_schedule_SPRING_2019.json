@@ -1,0 +1,138 @@
+[
+  {
+    "first_name": "Jishitha",
+    "last_name": "Nambiar",
+    "schedule": {
+      "Sunday" : {
+        "in": "NO",
+        "out": "NO"
+      },
+      "Monday": {
+        "in": "10:00",
+        "out": "16:30"
+      },
+      "Tuesday": {
+        "in": "NO",
+        "out": "NO"
+      },
+      "Wednesday": {
+        "in": "NO",
+        "out": "NO"
+      },
+      "Thursday": {
+        "in": "NO",
+        "out": "NO"
+      },
+      "Friday": {
+        "in": "10:00",
+        "out": "14:30"
+      },
+      "Saturday" : {
+        "in": "NO",
+        "out": "NO"
+      }
+    }
+  },
+  {
+    "first_name": "Tyler",
+    "last_name": "Stoney",
+    "schedule": {
+      "Sunday" : {
+        "in": "NO",
+        "out": "NO"
+      },
+      "Monday": {
+        "in": "NO",
+        "out": "NO"
+      },
+      "Tuesday": {
+        "in": "NO",
+        "out": "NO"
+      },
+      "Wednesday": {
+        "in": "11:00",
+        "out": "16:30"
+      },
+      "Thursday": {
+        "in": "10:00",
+        "out": "15:30"
+      },
+      "Friday": {
+        "in": "NO",
+        "out": "NO"
+      },
+      "Saturday" : {
+        "in": "NO",
+        "out": "NO"
+      }
+    }
+  },
+  {
+    "first_name": "Patrick",
+    "last_name": "Earl",
+    "schedule": {
+      "Sunday" : {
+        "in": "NO",
+        "out": "NO"
+      },
+      "Monday": {
+        "in": "NO",
+        "out": "NO"
+      },
+      "Tuesday": {
+        "in": "10:00",
+        "out": "14:00"
+      },
+      "Wednesday": {
+        "in": "10:00",
+        "out": "14:30"
+      },
+      "Thursday": {
+        "in": "NO",
+        "out": "NO"
+      },
+      "Friday": {
+        "in": "11:00",
+        "out": "15:30"
+      },
+      "Saturday" : {
+        "in": "NO",
+        "out": "NO"
+      }
+    }
+  },
+  {
+    "first_name": "Vinny",
+    "last_name": "Hornak",
+    "schedule": {
+      "Sunday" : {
+        "in": "NO",
+        "out": "NO"
+      },
+      "Monday": {
+        "in": "NO",
+        "out": "NO"
+      },
+      "Tuesday": {
+        "in": "14:00",
+        "out": "16:30"
+      },
+      "Wednesday": {
+        "in": "NO",
+        "out": "NO"
+      },
+      "Thursday": {
+        "in": "11:00",
+        "out": "16:30"
+      },
+      "Friday": {
+        "in": "NO",
+        "out": "NO"
+      },
+      "Saturday" : {
+        "in": "NO",
+        "out": "NO"
+      }
+    }
+  }
+]

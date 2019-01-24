@@ -25,7 +25,7 @@ if(!isset($_SESSION['stud_in_office_table'])) {
 
 	$amt = count($_SESSION['stud_in_office_table']);
 
-	if($amt>0){ 
+	if($amt>0) { 
 		echo("<table class='highlight' id='signin_table'>
 				<tr>
 					<th>Student</th>
@@ -39,8 +39,8 @@ if(!isset($_SESSION['stud_in_office_table'])) {
 		foreach($_SESSION['stud_in_office_table'] as $stud) {
 			$t = date_create_from_format('Y-m-d H:i:s', $stud->sign_in_time);
 			$t = date('H:i', $t->getTimestamp());
-			$id = $stud->student_id;
-			echo("<tr id='row$id'>");
+			$id = $stud->rowid;
+			echo("<tr id='row".$stud->rowid."'>");
 			echo("<td>$stud->fname $stud->lname</td>");
 			echo("<td>$stud->class</td>");
 			echo("<td>$stud->professor</td>");

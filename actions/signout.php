@@ -10,19 +10,22 @@ $date = date('Y-m-d');
 
 $dt = $date . ' ' . $time . ':00';
 $db = new PDO('sqlite:../data/GA_LOG.db');
-if($student_query = $db->prepare("UPDATE signed_in set sign_out_time=:dt WHERE student_id = :studId")){
-	$student_query->bindParam(":studId", intval($_POST['studId']));
+if($student_query = $db->prepare("UPDATE signed_in set sign_out_time=:dt WHERE rowid = :studId")){
+	$student_query->bindParam(":studId", $_POST['studId']);
 	$student_query->bindParam(":dt", $dt);
-	$student_query->execute();
+	if (!$student_query->execute()) {
+		echo("<div class='error'>Failed to sign student out.</div>");
+		exit;
+	}
 	$stud_key = 0;
 	foreach($_SESSION['stud_in_office_table'] as $key => $stud) {
-		if(intval($stud->student_id) == intval($_POST['studId'])){
+		if(intval($stud->rowid) == intval($_POST['studId'])){
 			$stud_key = $key;
 			break;
 		}
 	}
 	unset($_SESSION['stud_in_office_table'], $stud_key);
-	echo("<div class='success'>Successfully signed out!</div>");
+	echo("<div class='success'>Successfully signed ". $_POST['studId']." out!</div>");
 	exit;
 } else{
 	//error !! don't go further

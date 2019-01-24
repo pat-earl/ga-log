@@ -11,7 +11,9 @@ var ga_sel = document.getElementById('ga_select');
 var class_sel = document.getElementById('class_dropdown');
 var profEnabled = false;
 var timePickers = null;
-var studentListLen = 0;
+
+var GA_SCHEDULE_FILE = 'ga_schedule_SPRING_2019.json';
+var CLASSLIST_FILE = 'classlist_SPRING_2019.json';
 
 function showDiv(btnName, divName) {
 	var showButt = document.getElementById(btnName);
@@ -106,7 +108,7 @@ function loadGaSchedules() {
 	var today_date = new Date();
 	var today_now = Date.now();
 	var curr_day = days[today_date.getDay()];	
-	loadJSON('./data/ga_schedule.json', function(response) {
+	loadJSON('./data/'+GA_SCHEDULE_FILE, function(response) {
 		// Parse JSON string into object
 		var ga_sched = JSON.parse(response);
 		ga_sel = document.getElementById('ga_select');
@@ -154,6 +156,23 @@ function reloadRecords() {
 	});
 }
 
+/* // load_student_list.php returns html option
+//   tags containing the students in the session.
+//   The form's select element is then refreshed.
+function reloadDropdowns() {
+	var ajaxurl = './actions/load_student_list.php',
+	data = "&ajax=" + true;
+	$.post(ajaxurl, data, function (response) {
+		if(response.indexOf("option")>=0){
+			$('#student_dropdown').append(response);
+			$('select').formSelect();
+		}
+		else
+			M.toast({html: "Error: Couldn't populate the dropdowns."});
+
+	});
+} */
+
 // load_student_list.php returns html option
 //   tags containing the students in the session.
 //   The form's select element is then refreshed.
@@ -166,11 +185,9 @@ function reloadDropdowns() {
 			//$('select').formSelect();
 			//$('#test option').filter(function () { return $(this).html() == "B"; }).val();
 			var studList={};
-            studListLen = 1;
 			$("#student_dropdown > option").each(function() {
 				//alert(this.text + ' ' + this.value);
 				studList[this.text] = null;
-                studListLen++;
 			});
 			$('input.autocomplete').autocomplete({
 				data: studList,
@@ -183,19 +200,12 @@ function reloadDropdowns() {
 }
 
 function changeSelectDom() {
-    var cmpLen = 1;
 	$("#student_dropdown option").filter(function() {
-        cmpLen++;
-		if( this.text == $("#student-auto").val()) {
-			//console.log(this.value + this.text);
-            cmpLen=-13;
+		if( this.text == $("#student-auto").val()){
+			console.log(this.value + this.text);
 			return this.text == $("#student-auto").val();
-		} 
-	}).attr('selected', true).change();
-    if(cmpLen > studentListLen) {
-        //console.log(cmpLen + "not found" + studListLen);
-        $("#student_dropdown").val('0').change();
-    }
+		}
+	}).attr('selected', true);
 }
 
 
@@ -270,7 +280,7 @@ $(document).ready(function() {
 	M.AutoInit();
 
 	// Populates the class select dropdown from a JSON file
-	loadJSON('./data/classlist.json', function(response) {
+	loadJSON('./data/'+CLASSLIST_FILE, function(response) {
 		// Parse JSON string into object
 		classes = JSON.parse(response);
 		classes.forEach(cscClass => {

@@ -37,7 +37,7 @@ $_SESSION['stud_list'] = $student_list;
 
 $students_in_office_table = []; // Holds all query objects (all data about signed-in students)
 $students_in_office 	  = []; // Holds just the id of the students currently signed in
-if($student_query = $db->prepare("SELECT * FROM signed_in LEFT JOIN students on signed_in.student_id = students.rowid WHERE sign_in_time >= sign_out_time")) {
+if($student_query = $db->prepare("SELECT signed_in.rowid, * FROM signed_in INNER JOIN students on signed_in.student_id = students.rowid WHERE sign_in_time >= sign_out_time")) {
 	$student_query->execute();
 
 	while($row = $student_query->fetchObject()) {
@@ -48,6 +48,7 @@ if($student_query = $db->prepare("SELECT * FROM signed_in LEFT JOIN students on 
 } else {
    //error !! don't go further
    var_dump($db->errorInfo());
+   exit();
 }
 
 // Store both in the session (both used in "log_student.php", "signout.php", "table.php")

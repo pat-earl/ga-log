@@ -1,0 +1,177 @@
+[{
+        "id": "0",
+        "name": "other",
+        "profs": [
+            "Zhang",
+            "Schwesinger",
+            "Parson",
+            "Spiegel",
+            "Frye",
+            "Hussain",
+            "Pham",
+            "Carelli",
+            "Demarco",
+            "Shim",
+            "Tan"
+        ]
+    },
+    {
+        "id": "10",
+        "name": "Computer Applications",
+        "profs": [
+            "Manakkadu"
+        ]
+    },
+    {
+        "id": "111",
+        "name": "Computer Forensics",
+        "profs": [
+            "Tranotti"
+        ]
+    },
+    {
+        "id": "120",
+        "name": "Intro Creative Graphical Code",
+        "profs": [
+            "Tranotti"
+        ]
+    },
+    {
+        "id": "125",
+        "name": "Discrete Math I",
+        "profs": [
+            "Zhang"
+        ]
+    },
+    {
+        "id": "130",
+        "name": "Info Tech Fundamentals",
+        "profs": [
+            "Tan"
+        ]
+    },
+    {
+        "id": "135",
+        "name": "Computer Science I",
+        "profs": [
+            "Tan",
+            "Manakkadu",
+            "Hussain"
+        ]
+    },
+    {
+        "id": "136",
+        "name": "Computer Science II",
+        "profs": [
+            "Carelli",
+            "Spiegel"
+        ]
+    },
+    {
+        "id": "223",
+        "name": "Advanced Scientific Programming",
+        "profs": [
+            "Schwesinger"
+        ]
+    },
+    {
+        "id": "225",
+        "name": "Discrete Math II",
+        "profs": [
+            "Shim"
+        ]
+    },
+    {
+        "id": "235",
+        "name": "Computer Organization/Assembly",
+        "profs": [
+            "Carelli"
+        ]
+    },
+    {
+        "id": "237",
+        "name": "Data Structures",
+        "profs": [
+            "Spiegel"
+        ]
+    },
+    {
+        "id": "240",
+        "name": "Fundamentals of Game Development",
+        "profs": [
+            "Pham"
+        ]
+    },
+    {
+        "id": "242",
+        "name": "Web Programming",
+        "profs": [
+            "Carelli"
+        ]
+    },
+    {
+        "id": "243",
+        "name": "Java Programming",
+        "profs": [
+            "Schwesinger"
+        ]
+    },
+    {
+        "id": "252",
+        "name": "Unix Scripting and Admin",
+        "profs": [
+            "Carelli",
+            "Frye"
+        ]
+    },
+    {
+        "id": "253",
+        "name": "IT Systems",
+        "profs": [
+            "Pham",
+            "Demarco"
+        ]
+    },
+    {
+        "id": "273",
+        "name": "Computing Systems Integration",
+        "profs": [
+            "Pham"
+        ]
+    },
+    {
+        "id": "310",
+        "name": "Procd Orient Program Lang",
+        "profs": [
+            "Spiegel"
+        ]
+    },
+    {
+        "id": "325",
+        "name": "Intro Comp Sci Theory",
+        "profs": [
+            "Shim"
+        ]
+    },
+    {
+        "id": "342",
+        "name": "Web Technologies",
+        "profs": [
+            "Tan"
+        ]
+    },
+    {
+        "id": "351",
+        "name": "Digital Forensics",
+        "profs": [
+            "Tranotti"
+        ]
+    },
+    {
+        "id": "456",
+        "name": "Database Management Systems",
+        "profs": [
+            "Shim"
+        ]
+    }
+]
